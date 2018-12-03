@@ -1,0 +1,34 @@
+{
+  "name": "selist-generator",
+  "version": "1.0.0",
+  "description": "App to generate setlists for a band based on song characteristics",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beb131/setlist-generator.git"
+  },
+  "keywords": [
+    "music",
+    "band",
+    "setlist",
+    "songs",
+    "setlist",
+    "generator",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "Brandon Bachrach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beb131/setlist-generator/issues"
+  },
+  "homepage": "https://github.com/beb131/setlist-generator#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
