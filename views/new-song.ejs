@@ -1,10 +1,17 @@
 <% include partials/header %>
 
-<h4>Add a new Song</h4>
-
-<form action="/songs" method="POST">
-    <input type="text" placeholder="title" name="title">
-    <button>Submit</button>
-</form>
+<div class="container">
+    <h4>Add a new Song</h4>
+    <div class="row">
+        <form action="/songs" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="title" name="title">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-lg btn-primary">Submit</button>
+            </div>
+        </form>    
+    </div>
+</div>
 
 <% include partials/footer %>
