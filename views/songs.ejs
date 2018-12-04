@@ -1,0 +1,23 @@
+<% include partials/header %>
+
+<div class="container">
+    <header class="jumbotron">
+        <h1>Songs</h1>
+        <p>View and edit songs by <a href="/setlists"><%= band %></a></p>
+        <p>
+            <a class="btn btn-primary btn-large" href="/new-song">Add Song</a>
+        </p>
+    </header>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Recent Songs</h3>
+            <% songs.forEach(function(song){ %> 
+                <div class="col-md-12">
+                    <h3><%= song.title %></h3>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>

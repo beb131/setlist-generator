@@ -1,0 +1,26 @@
+<% include partials/header %>
+
+<div class="container">
+
+<header class="jumbotron">
+    <h1>Setlists</h1>
+    <p>View and edit setlists by <a href="/songs"><%= band %></a></p>
+    <p>
+        <a class="btn btn-primary btn-large" href="/new-setlist">New Setlist</a>
+    </p>
+</header>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Recent Setlists</h3>
+        <% setlists.forEach(function(setlist){ %> 
+        <div class="col-md-12">
+                <h3><%= setlist.venue %></h3> <span>-</span> <h4><%= setlist.date %></h4>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+</div>
+
+<% include partials/footer %>
