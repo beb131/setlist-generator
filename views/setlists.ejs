@@ -15,7 +15,7 @@
         <h3>Recent Setlists</h3>
         <% setlists.forEach(function(setlist){ %> 
         <div class="col-md-12">
-                <h3><%= setlist.venue %></h3> <span>-</span> <h4><%= setlist.date %></h4>
+                <h3><a href="/setlists/<%= setlist.id %>"><%= setlist.venue.toUpperCase(); %></h3></a><span>-</span> <h4><%= setlist.date %></h4>
         </div>
         <% }); %>
     </div>

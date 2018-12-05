@@ -1,24 +1,26 @@
 <% include partials/header %>
 
 <div class="container">
-    <h1>Generate New Setlist For <%= band %></h1>
-    <div class="row">
+    <header class="jumbotron">
+        <h1>Generate New Setlist For <%= band %></h1>
+    </header>
+    <div class="row container">
 
         <form action="/setlists" method="POST">
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="venue" name="venue">
+                <input class="form-control" type="text" placeholder="Venue" name="venue">
             </div>
             <div class="form-group">
-                <input class="form-control" type="date" placeholder="date" name="date">
+                <input class="form-control" type="date" placeholder="Date of Show" name="date">
             </div>
             <div class="form-group">                
-                <input class="form-control" type="number" placeholder="number of sets" name="sets">
+                <input class="form-control" type="number" placeholder="Number of Sets" name="sets">
             </div>
             <div class="form-group">
-                <input class="form-control" type="number" placeholder="length per set" name="setLength">
+                <input class="form-control" type="number" placeholder="Length per Set" name="setLength">
             </div>
             <div class="form-group">
-                <button class="btn btn-lg btn-primary">Submit</button>
+                <button class="btn btn-lg btn-primary">Generate</button>
             </div>
         </form>
     </div>

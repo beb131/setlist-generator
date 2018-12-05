@@ -1,7 +1,14 @@
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
+const express = require("express"),
+  app = express(),
+  mongoose = require("mongoose"),
+  bodyParser = require("body-parser"),
+  Song = require("./models/song"),
+  Setlist = require("./models/setlist");
 
+mongoose.connect(
+  "mongodb://localhost/setlist_generator",
+  { useNewUrlParser: true }
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
@@ -9,35 +16,43 @@ app.set("view engine", "ejs");
 
 const band = "The Schwam";
 
-const setlists = [
-  {
-    venue: "Tommy Fox's",
-    date: "2018"
-  }
-];
-
-const songs = [
-  {
-    title: "Smile"
-  }
-];
-
 // HOME - Will be a band directory. Like asana "Teams"
 app.get("/", function(req, res) {
-  res.render("index");
+  res.render("index", { band, band });
 });
 
 // SETLIST INDEX
 app.get("/setlists", function(req, res) {
-  res.render("setlists", { setlists: setlists, band: band });
+  Setlist.find({}, function(err, setlists) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("setlists", { setlists: setlists, band: band });
+    }
+  });
 });
 
 app.post("/setlists", function(req, res) {
   const venue = req.body.venue;
   const date = req.body.date;
   const newSetlist = { venue: venue, date: date };
-  setlists.push(newSetlist);
-  res.redirect("/setlists");
+  Setlist.create(newSetlist, function(err, setlist) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/setlists");
+    }
+  });
+});
+
+app.get("/setlists/:id", function(req, res) {
+  Setlist.findById(req.params.id, function(err, setlist) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("setlist", { setlist, setlist });
+    }
+  });
 });
 
 app.get("/new-setlist", function(req, res) {
@@ -46,14 +61,35 @@ app.get("/new-setlist", function(req, res) {
 
 // SONG INDEX
 app.get("/songs", function(req, res) {
-  res.render("songs", { songs: songs, band: band });
+  Song.find({}, function(err, songs) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("songs", { songs: songs, band: band });
+    }
+  });
 });
 
 app.post("/songs", function(req, res) {
   const title = req.body.title;
   const newSong = { title: title };
-  songs.push(newSong);
-  res.redirect("/songs");
+  Song.create(newSong, function(err, song) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/songs");
+    }
+  });
+});
+
+app.get("/songs/:id", function(req, res) {
+  Song.findById(req.params.id, function(err, song) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("song", { song, song });
+    }
+  });
 });
 
 app.get("/new-song", function(req, res) {
